@@ -8,14 +8,19 @@ mongoDb();
 const cors=require('cors');
 app.use(cors());
 
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
+app.use((req, res, next) => {
+    const allowedOrigins = ['http://localhost:3000', 'https://go-yum-wr5h.vercel.app'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.header(
-        "Access-Control-Allow-Headers",
-        "Origin,X-Requested-With,Content-Type,Accept"
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
     );
     next();
-})
+});
+
 
 app.get("/",(req,res)=>{
     res.send("helloworld");
