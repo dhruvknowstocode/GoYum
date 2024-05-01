@@ -1,0 +1,35 @@
+.contact-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+  }
+  
+  .contact-container h2 {
+    color: #333;
+  }
+  
+  .contact-container p {
+    margin-bottom: 15px;
+  }
+  
+  .contact-details p {
+    margin-bottom: 5px;
+  }
+  
+  /* Media queries for responsiveness */
+  @media screen and (max-width: 768px) {
+    .contact-container {
+      max-width: 90%;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .contact-container {
+      padding: 10px;
+    }
+  }
+  
