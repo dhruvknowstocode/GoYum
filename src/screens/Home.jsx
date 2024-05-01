@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import Carousel from '../components/Carousel';
+import { baseUrl } from '../Url';
 
 export default function Home() {
   const [search,setSearch] =  useState('');
@@ -11,7 +11,7 @@ export default function Home() {
 
   const loadData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/foodData", {
+      const response = await fetch(`${baseUrl}/api/foodData`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
