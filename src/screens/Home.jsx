@@ -5,7 +5,7 @@ import Card from '../components/Card';
 import { baseUrl } from '../Url';
 
 export default function Home() {
-  const [search,setSearch] =  useState('');
+  const [search, setSearch] = useState('');
   const [foodCat, setFoodCat] = useState([]);
   const [foodItems, setFoodItems] = useState([]);
 
@@ -31,27 +31,27 @@ export default function Home() {
 
   return (
     <div>
-      <div><Navbar /></div>
+      <Navbar />
       <div>
-        <div id="carouselExampleFade" className="carousel slide carousel-fade " data-bs-ride="carousel" style={{ objectFit: "contain !important" }}>
-          <div className="carousel-inner " id='carousel'>
-            <div className=" carousel-caption  " style={{ zIndex: "9" }}>
-            <div className=" d-flex justify-content-center">  {/* justify-content-center, copy this <form> from navbar for search box */}
+        <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div className="carousel-inner" id='carousel'>
+            <div className="carousel-caption" style={{ zIndex: "9" }}>
+              <div className="d-flex justify-content-center">
                 <input className="form-control me-2 w-75 bg-white text-dark" type="search" placeholder="Search in here..." aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value) }} />
                 <button className="btn text-white bg-danger" onClick={() => { setSearch('') }}>X</button>
               </div>
             </div>
-            <div className="carousel-item active" >
-              <img src="https://source.unsplash.com/random/900x700/?burger" className="d-block w-100  " style={{ filter: "brightness(30%)" }} alt="Burger" />
+            <div className="carousel-item active">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=900&h=700&crop=entropy&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="d-block w-100 carousel-image" alt="Burger" />
             </div>
             <div className="carousel-item">
-              <img src="https://source.unsplash.com/random/900x700/?pastry" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="vPastry" />
+              <img src="https://images.unsplash.com/photo-1623334044303-241021148842?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="d-block w-100 carousel-image" alt="Pastry" />
             </div>
             <div className="carousel-item">
-              <img src="https://source.unsplash.com/random/900x700/?barbeque" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="Barbeque" />
+              <img src="https://images.unsplash.com/photo-1554306297-0c86e837d24b?q=80&w=2036&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="d-block w-100 carousel-image" alt="Barbeque" />
             </div>
             <div className="carousel-item">
-              <img src="https://source.unsplash.com/random/900x700/?pasta" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="Pasta" />
+              <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="d-block w-100 carousel-image" alt="Pasta" />
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -75,11 +75,11 @@ export default function Home() {
               {foodItems.length !== 0 ? (
                 foodItems.filter((item) => {
                   return (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search.toLocaleLowerCase()))
-                }) 
+                })
                   .map((filterItems) => {
                     return (
                       <div key={filterItems._id} className='col-12 col-md-6 col-lg-3'>
-                        <Card foodItem = {filterItems}
+                        <Card foodItem={filterItems}
                           options={filterItems.options[0]}
                         />
                       </div>
@@ -92,9 +92,14 @@ export default function Home() {
         ) : (
           ""
         )}
-
       </div>
-      <div><Footer /></div>
+      <Footer />
+      <style jsx>{`
+        .carousel-image {
+          height: 70vh;
+          object-fit: cover;
+        }
+      `}</style>
     </div>
   );
 }
