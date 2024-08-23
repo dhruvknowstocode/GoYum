@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { baseUrl } from '../Url';
+import Navbar from '../components/Navbar';
+import './Login.css'; // Import the CSS file
 
 export default function Login() {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);  // Start loading
         try {
             const response = await fetch(`${baseUrl}/api/loginuser`, {
                 method: 'POST',
@@ -35,6 +39,8 @@ export default function Login() {
         } catch (error) {
             console.error("Error logging in:", error);
             alert("An error occurred. Please try again later.");
+        } finally {
+            setIsLoading(false);  // Stop loading
         }
     }
 
@@ -46,40 +52,38 @@ export default function Login() {
         setShowPassword(!showPassword);
     }
 
-    const inputStyle = {
-        marginBottom: '1rem',
-        width: '100%',
-        padding: '0.5rem',
-        borderRadius: '4px',
-        border: '1px solid #ced4da',
-        boxSizing: 'border-box',
-    };
-
-    const buttonStyle = {
-        padding: '0.5rem 1rem',
-        borderRadius: '4px',
-        border: 'none',
-        cursor: 'pointer',
-    };
-
     return (
-        <div className="container mt-4">
-            <form onSubmit={handleSubmit}>
-                <div style={{ ...inputStyle, marginBottom: '1rem' }}>
-                    <label htmlFor="exampleInputEmail1" style={{ fontWeight: 'bold' }}>Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" name='email' value={credentials.email} onChange={onChange} style={inputStyle} />
-                    <div style={{ fontSize: '0.875rem', color: '#6c757d' }}>We'll never share your email with anyone else.</div>
-                </div>
-                <div style={{ ...inputStyle, marginBottom: '1rem' }}>
-                    <label htmlFor="exampleInputPassword1" style={{ fontWeight: 'bold' }}>Password</label>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <input type={showPassword ? "text" : "password"} className="form-control" id="exampleInputPassword1" name='password' value={credentials.password} onChange={onChange} style={inputStyle} />
-                        <button style={{ ...buttonStyle, marginLeft: '0.5rem', backgroundColor: '#6c757d', color: 'white' }} type="button" onClick={togglePasswordVisibility}>{showPassword ? "Hide" : "Show"}</button>
+        <>
+            <Navbar />
+            <div className="login-container">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <input type="email" className="form-control" id="exampleInputEmail1" name='email' value={credentials.email} onChange={onChange} required />
+                        <small>We'll never share your email with anyone else.</small>
                     </div>
-                </div>
-                <button type="submit" className="m-3 btn btn-success" style={buttonStyle}>Submit</button>
-                <Link to="/createuser" className='m-3 btn btn-danger' style={buttonStyle}>I am a new user</Link>
-            </form>
-        </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <div className="password-input-group">
+                            <input type={showPassword ? "text" : "password"} className="form-control" id="exampleInputPassword1" name='password' value={credentials.password} onChange={onChange} required />
+                            <button type="button" className="toggle-password-btn" onClick={togglePasswordVisibility}>
+                                {showPassword ? "Hide" : "Show"}
+                            </button>
+                        </div>
+                    </div>
+                    <div className="button-group">
+                        <button type="submit" className="btn btn-success" disabled={isLoading}>
+                            {isLoading ? (
+                                <>
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    {' '}Logging in...
+                                </>
+                            ) : "Submit"}
+                        </button>
+                        <Link to="/createuser" className="btn btn-danger">I am a new user</Link>
+                    </div>
+                </form>
+            </div>
+        </>
     );
 }

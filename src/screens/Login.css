@@ -1,0 +1,102 @@
+/* Login.css */
+
+.login-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.login-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.login-form .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.login-form .form-control:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.login-form small {
+    font-size: 0.875rem;
+    color: #6c757d;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.password-input-group {
+    display: flex;
+    align-items: center;
+}
+
+.password-input-group .toggle-password-btn {
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.password-input-group .toggle-password-btn:hover {
+    background-color: #5a6268;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.button-group .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-group .btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.button-group .btn-success:hover {
+    background-color: #218838;
+}
+
+.button-group .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.button-group .btn-danger:hover {
+    background-color: #c82333;
+}
+
+.spinner-border {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+}
