@@ -15,6 +15,8 @@ import { CartProvider } from './components/ContextReducer.jsx';
 import MyOrder from './screens/MyOrder.jsx';
 import Contact from './screens/Contact.jsx';
 import About from './screens/About.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
